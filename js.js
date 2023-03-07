@@ -7,20 +7,30 @@ const func = (cityName) => {
 }
 
 const display = (data) => {
-    // console.log(data.weather[0].main);
-    const temperature = document.getElementById('temp');
-    temperature.innerText = data.main.temp;
-    const description = document.getElementById('type');
-    description.innerText = data.weather[0].main;
+    console.log(data.main.temp);
+    setTemperature('temp', data.main.temp);
+    setType('type', data.weather[0].main);
+    
+}
+const setTemperature = (id, value) =>{
+    const temperature = document.getElementById(id);
+    temperature.innerText = value;
+}
+const setType = (id, value) =>{
+    const description = document.getElementById(id);
+    description.innerText = value;
+}
+const setCityName = (id, value) =>{
+    const cityName = document.getElementById(id);
+    cityName.innerText = value;
 }
 
 document.getElementById('btn-search').addEventListener("click", () =>{
-    const city = document.getElementById('temp-input').value;
-    console.log(city);
-    const cityName = document.getElementById('city-name');
-    cityName.innerText = city;
-    
-    
+    const city = document.getElementById('temp-input');
+    const cityValue = city.value;
+    // console.log(city);
+    setCityName('city-name', cityValue);
     func(city);
+    city.value = '';
 });
 func("Dhaka");
